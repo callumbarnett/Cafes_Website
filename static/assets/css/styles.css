@@ -1,0 +1,111 @@
+body {
+background-color: #18191A;
+}
+
+h1 {
+text-align: center;}
+
+/*Nav Bar*/
+#nav-bar{
+position: fixed;
+}
+.navbar {
+padding: 1% 0% 1% 0%;
+z-index: 2;
+}
+
+.navbar-brand {
+margin: 0% 70% 0% 5%;
+}
+
+.nav-item {
+margin-right: 50px;
+}
+
+h1 {
+color: white;
+}
+
+/* Carousel */
+#carousel {
+width: 100%;
+z-index: -1;
+margin-left: 0px;
+margin-right: 0px;
+margin-bottom: 150px;
+}
+
+.carousel-item {
+width: 100%;
+height: 800px;
+}
+
+/* Buttons */
+#cafes-btn {
+position: absolute;
+left: 650px;
+bottom: 300px;
+z-index: 1;
+
+}
+
+#add-btn {
+position: absolute;
+right: 650px;
+bottom: 300px;
+z-index: 1;
+}
+
+.carousel-btn {
+border: 5px solid white;
+}
+
+.btn {
+background-color: #18191A;
+}
+
+/* Cafe cards */
+
+.card {
+margin: 20px 40px;
+width: 350px;
+background-color: #b9babd;
+}
+
+.card-img-top {
+height:300px;
+margin-top: 10px;
+}
+
+.card-btn {
+position: absolute;
+bottom: 10px;
+left: 215px;
+}
+
+#delete-btn {
+left: 135px;
+}
+
+.form {
+color: white;
+width: 70%;
+position: absolute;
+left: 25%;
+top: 15%;
+}
+
+.form-group {
+margin-bottom: 15px;
+}
+
+.radios {
+position: absolute;
+top: 5%;
+left: 500px;
+}
+
+.submit-btn {
+color: white;
+margin: 80px 325px;
+}

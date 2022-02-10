@@ -1,0 +1,64 @@
+{% include "header.html" %}
+
+<div id="carousel">
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{{url_for('static', filename='assets/images/cafe-bg.jfif')}}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static', filename='assets/images/cafe-bg-1.jpg')}}" class="d-block w-100" alt="...">
+    </div>
+    <div class="carousel-item">
+      <img src="{{url_for('static', filename='assets/images/cafe-bg-2.jpg')}}" class="d-block w-100" alt="...">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+  <a href="#cafe-section"><button id="cafes-btn" type="button" class="btn btn-dark btn-lg carousel-btn">Cafes</button></a>
+  <a href="{{ url_for('add') }}"><button id="add-btn" type="button" class="btn btn-dark btn-lg carousel-btn">Add Cafe</button></a>
+</div>
+
+<br>
+<section id="cafe-section">
+<div class="container">
+  <div>
+    <h1>Coffee Shops</h1>
+    <hr>
+  </div>
+  <div class="row">
+  {% for cafe in cafes %}
+
+    <div class="card col-lg-4 col-md-4 mb-4">
+  <img src="{{cafe.img_url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{cafe.name}}</h5>
+
+    <p class="card-text">☕ {{cafe.coffee_price}}           🪑 {{cafe.seats}}</p>
+    <p class="card-text">{% if cafe.has_toilet %}🚽{% endif %}{% if cafe.has_wifi %}    <img src="{{url_for('static', filename='assets/images/wifi.svg')}}">{%endif%}
+    {%if cafe.has_sockets%}🔌{%endif%}     {%if cafe.can_take_calls%}☎️{% endif %}</p>
+    <br>
+    <a href="{{ cafe.map_url }}" class="btn btn-primary card-btn">View On Map</a>
+    <a id="delete-btn" class="btn btn-primary card-btn" href="{{ url_for('delete', id=cafe.id) }}">Delete</a>
+  </div>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+</section>
+
+{% include "footer.html" %}

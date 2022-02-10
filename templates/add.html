@@ -1,0 +1,30 @@
+{% include "header.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+<form class="form" method="POST" action="{{ url_for('add') }}">
+    <div>{{ form.name.label }}</div>
+    <div>{{ form.name(size=50) }}</div><br>
+    <div> {{ form.map_url.label }}</div>
+    <div> {{ form.map_url(size=50) }}</div><br>
+    <div>{{ form.img_url.label }}</div>
+    <div>{{ form.img_url(size=50) }}</div><br>
+    <div>{{ form.location.label }}</div>
+    <div>{{ form.location(size=50) }}</div><br>
+    <div>{{ form.seats.label }}</div>
+    <div>{{ form.seats(size=50) }}</div><br>
+    <div>{{ form.coffee_price.label }}</div>
+    <div>{{ form.coffee_price(size=50) }}</div>
+    <div class="radios">
+    <div>{{ form.has_toilet.label }}</div>
+    <div>{{ form.has_toilet(size=50) }}</div><br>
+    <div>{{ form.has_wifi.label }}</div>
+    <div>{{ form.has_wifi(size=50) }}</div><br>
+    <div>{{ form.has_sockets.label }}</div>
+    <div>{{ form.has_sockets(size=50) }}</div><br>
+    <div>{{ form.can_take_calls.label }}</div>
+    <div>{{ form.can_take_calls(size=50) }}</div><br><br>
+    </div>
+    <div class="submit-btn">{{ form.submit }}</div>
+</form>
+
+{% include "footer.html" %}
