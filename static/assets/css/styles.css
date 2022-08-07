@@ -1,5 +1,6 @@
 body {
 background-color: #18191A;
+margin: 0 auto;
 }
 
 h1 {
@@ -9,9 +10,11 @@ text-align: center;}
 #nav-bar{
 position: fixed;
 }
+
 .navbar {
-padding: 1% 0% 1% 0%;
 z-index: 2;
+width: 100%;
+height: 10%;
 }
 
 .navbar-brand {
@@ -30,8 +33,7 @@ color: white;
 #carousel {
 width: 100%;
 z-index: -1;
-margin-left: 0px;
-margin-right: 0px;
+margin-left: auto;
 margin-bottom: 150px;
 }
 
@@ -42,17 +44,20 @@ height: 800px;
 
 /* Buttons */
 #cafes-btn {
+text-align: center;
+padding-left: 25px;
+padding-right: 25px;
 position: absolute;
-left: 650px;
-bottom: 300px;
+margin-left: 40%;
+bottom: 350px;
 z-index: 1;
 
 }
 
 #add-btn {
 position: absolute;
-right: 650px;
-bottom: 300px;
+margin-left: 50%;
+bottom: 350px;
 z-index: 1;
 }
 

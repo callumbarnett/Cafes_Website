@@ -19,15 +19,15 @@ app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
 # Cafe TABLE Configuration
 class Cafe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(250), unique=True, nullable=False)
+    name = db.Column(db.String(250), unique=False, nullable=False)
     map_url = db.Column(db.String(500), nullable=False)
     img_url = db.Column(db.String(500), nullable=False)
     location = db.Column(db.String(250), nullable=False)
     seats = db.Column(db.String(250), nullable=False)
-    has_toilet = db.Column(db.Boolean, nullable=True)
-    has_wifi = db.Column(db.Boolean, nullable=True)
-    has_sockets = db.Column(db.Boolean, nullable=True)
-    can_take_calls = db.Column(db.Boolean, nullable=True)
+    has_toilet = db.Column(db.Integer, nullable=True)
+    has_wifi = db.Column(db.Integer, nullable=True)
+    has_sockets = db.Column(db.Integer, nullable=True)
+    can_take_calls = db.Column(db.Integer, nullable=True)
     coffee_price = db.Column(db.String(250), nullable=True)
 
 
@@ -38,11 +38,10 @@ class AddCafe(FlaskForm):
     img_url = URLField(u"A image link of the cafe", validators=[DataRequired()])
     location = StringField(u"Location of new cafe", validators=[DataRequired()])
     seats = StringField(u"Min number - Max number of seats", validators=[DataRequired()])
-    has_toilet = RadioField("Are there toilets available?", choices=[(1, 'Yes'), (0, 'No')],
-                            validators=[DataRequired()])
-    has_wifi = RadioField("Is there WiFi available?", choices=[(1, 'Yes'), (0, 'No')], validators=[DataRequired()])
-    has_sockets = RadioField("Are there sockets for charging?", choices=[(1, 'Yes'), (0, 'No')], validators=[DataRequired()])
-    can_take_calls = RadioField("Is there mobile signal?", choices=[(1, 'Yes'), (0, 'No')], validators=[DataRequired()])
+    has_toilet = RadioField("Are there toilets available?", coerce=int, choices=[(1, 'Yes'), (0, 'No')], default=1)
+    has_wifi = RadioField("Is there WiFi available?", coerce=int, choices=[(1, 'Yes'), (0, 'No')], default=1)
+    has_sockets = RadioField("Are there sockets for charging?", coerce=int, choices=[(1, 'Yes'), (0, 'No')], default=1)
+    can_take_calls = RadioField("Is there mobile signal?", coerce=int, choices=[(1, 'Yes'), (0, 'No')], default=1)
     coffee_price = StringField("How much is an Americano?", validators=[DataRequired()])
     submit = SubmitField(u"Add Cafe")
 
@@ -57,33 +56,17 @@ def home():
 def add():
     add_cafe = AddCafe()
     if request.method == 'POST':
-        if request.form['has_toilet'] == 1:
-            toilet_bool = True
-        else:
-            toilet_bool = False
-        if request.form['has_wifi'] == 1:
-            wifi_bool = True
-        else:
-            wifi_bool = False
-        if request.form['has_sockets'] == 1:
-            sockets_bool = True
-        else:
-            sockets_bool = False
-        if request.form['can_take_calls'] == 1:
-            calls_bool = True
-        else:
-            calls_bool = False
-        # Create Cafe
+
         new_cafe = Cafe(
             name=request.form['name'],
             map_url=request.form['map_url'],
             img_url=request.form['img_url'],
             location=request.form['location'],
             seats=request.form['seats'],
-            has_toilet=toilet_bool,
-            has_wifi=wifi_bool,
-            has_sockets=sockets_bool,
-            can_take_calls=calls_bool,
+            has_toilet=request.form['has_toilet'],
+            has_wifi=request.form['has_wifi'],
+            has_sockets=request.form['can_take_calls'],
+            can_take_calls=request.form['can_take_calls'],
             coffee_price=request.form['coffee_price'])
         db.session.add(new_cafe)
         db.session.commit()

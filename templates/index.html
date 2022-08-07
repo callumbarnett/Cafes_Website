@@ -1,6 +1,7 @@
 {% include "header.html" %}
 
-<div id="carousel">
+<div id="carousel" class="container">
+  <div class="row">
 
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
@@ -27,9 +28,10 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
   </button>
+    <a href="#cafe-section"><button id="cafes-btn" type="button" class="btn btn-dark btn-lg carousel-btn">Cafes</button></a>
+    <a href="{{ url_for('add') }}"><button id="add-btn" type="button" class="btn btn-dark btn-lg carousel-btn">Add Cafe</button></a>
 </div>
-  <a href="#cafe-section"><button id="cafes-btn" type="button" class="btn btn-dark btn-lg carousel-btn">Cafes</button></a>
-  <a href="{{ url_for('add') }}"><button id="add-btn" type="button" class="btn btn-dark btn-lg carousel-btn">Add Cafe</button></a>
+</div>
 </div>
 
 <br>
@@ -48,8 +50,8 @@
     <h5 class="card-title">{{cafe.name}}</h5>
 
     <p class="card-text">☕ {{cafe.coffee_price}}           🪑 {{cafe.seats}}</p>
-    <p class="card-text">{% if cafe.has_toilet %}🚽{% endif %}{% if cafe.has_wifi %}    <img src="{{url_for('static', filename='assets/images/wifi.svg')}}">{%endif%}
-    {%if cafe.has_sockets%}🔌{%endif%}     {%if cafe.can_take_calls%}☎️{% endif %}</p>
+    <p class="card-text">{% if cafe.has_toilet == 1 %}🚽{% endif %}{% if cafe.has_wifi == 1 %}    <img src="{{url_for('static', filename='assets/images/wifi.svg')}}">{%endif%}
+    {%if cafe.has_sockets == 1 %}🔌{%endif%}     {%if cafe.can_take_calls == 1 %}☎️{% endif %}</p>
     <br>
     <a href="{{ cafe.map_url }}" class="btn btn-primary card-btn">View On Map</a>
     <a id="delete-btn" class="btn btn-primary card-btn" href="{{ url_for('delete', id=cafe.id) }}">Delete</a>
